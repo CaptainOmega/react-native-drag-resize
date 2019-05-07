@@ -11,8 +11,8 @@ React Native component for draggable and resizable manipulation.
 - [Installation](#installation)
 - [Basic Usage](#basic-usage)
 - [Properties](#properties)
-  + [Basic props of `DragResizeBlock`](#basic-props-of-dragresizeblock-)
-  + [Basic props of `DragResizeContainer`](#basic-props-of-dragresizecontainer-)
+  + [Basic props of `DragResizeBlock`](#basic-props-of-dragresizeblock)
+  + [Basic props of `DragResizeContainer`](#basic-props-of-dragresizecontainer)
 - [Run example](#run-example)
 
 ### Installation

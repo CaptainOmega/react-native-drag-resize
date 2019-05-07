@@ -409,7 +409,7 @@ export default class App extends Component {
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#FFFFFF',
   },
   scrollView: {
     paddingBottom: 50,
@@ -428,7 +428,7 @@ const styles = StyleSheet.create({
   canvas: {
     width: '100%',
     height: '100%',
-    backgroundColor: '#FAFBFC',
+    backgroundColor: '#D1D5DA',
     marginTop: 4,
   },
 });
