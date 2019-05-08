@@ -9,8 +9,7 @@
   "dependencies": {
     "react": "16.8.3",
     "react-native": "0.59.5",
-    "react-native-drag-resize": "file:..",
-    "react-native-slider": "^0.11.0"
+    "react-native-drag-resize": "file:.."
   },
   "devDependencies": {
     "@babel/core": "^7.4.3",

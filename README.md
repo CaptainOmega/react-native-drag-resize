@@ -99,11 +99,12 @@ $ react-native run-ios
 
 #### Notice!
 
-If your `npm` not support symlinks, then call this code in `example` directory:
+If your `npm` not support symlinks, then call this code from repository root directory:
 
 ```bash
-$ cp -alf .. node_modules/
-$ rm -R node_modules/react-native-drag-resize/example
+$ cp -alf $PWD example/node_modules/
+$ rm -R example/node_modules/react-native-drag-resize/example
+$ cd example
 $ react-native run-android
 $ react-native run-ios
 ``` 
