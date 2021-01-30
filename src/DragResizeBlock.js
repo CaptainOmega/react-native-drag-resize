@@ -187,7 +187,6 @@ export class DragResizeBlock extends Component {
    */
   onPress = (event) => {
     const { onPress } = this.props;
-
     if (onPress !== null) {
       onPress(event);
     }
@@ -536,7 +535,7 @@ export class DragResizeBlock extends Component {
    * Render connector components.
    */
   renderConnectors = () => {
-    const { connectors } = this.props;
+    const { connectors, connectorStyle, customConnector } = this.props;
 
     const { w, h } = this.state;
 
@@ -545,17 +544,18 @@ export class DragResizeBlock extends Component {
         <Connector
           key={connectorType}
           type={connectorType}
-          size={CONNECTOR_SIZE}
           width={w}
           height={h}
           connectorType={this.connectorsMap[connectorType]}
+          size={CONNECTOR_SIZE}
           x={this.connectorsMap[connectorType].calculateX(w)}
           y={this.connectorsMap[connectorType].calculateY(h)}
           onStart={this.connectorsMap[connectorType].onStart}
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
           onPress={this.onPress}
-          connectorStyle={this.props.connectorStyle}
+          connectorStyle={connectorStyle}
+          customConnector={customConnector}
         />
       );
     });
@@ -576,6 +576,7 @@ export class DragResizeBlock extends Component {
           height: h,
           padding: CONNECTOR_SIZE / 2,
           zIndex: isSelected ? zIndex + 1 : zIndex,
+          transform: [{ rotate: `${this.props.rotate}deg` }],
         }}>
         <TouchableWithoutFeedback onPress={this.onPress}>
           <View

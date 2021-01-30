@@ -86,6 +86,7 @@ export class Connector extends Component {
       height,
       connectorType,
       connectorStyle,
+      customConnector,
     } = this.props;
     const LESS = 12;
     const CONNECTOR_CENTER_WIDTH = width - size - LESS;
@@ -98,6 +99,8 @@ export class Connector extends Component {
         style={{
           position: "absolute",
           backgroundColor: "transparent",
+          borderWidth: 1,
+          borderColor: "black",
           left: CONNECTOR_CENTER_LEFT,
           top: CONNECTOR_CENTER_RIGHT,
           width: CONNECTOR_CENTER_WIDTH,
@@ -120,8 +123,9 @@ export class Connector extends Component {
           },
           connectorStyle,
         ]}
-        {...this._panResponder.panHandlers}
-      />
+        {...this._panResponder.panHandlers}>
+        {customConnector ? customConnector : null}
+      </View>
     );
   }
 }
@@ -130,9 +134,6 @@ Connector.propTypes = {
   x: PropTypes.number,
   y: PropTypes.number,
   size: PropTypes.number,
-  width: PropTypes.number,
-  height: PropTypes.number,
-  connectorType: PropTypes.string,
   onStart: PropTypes.func.isRequired,
   onMove: PropTypes.func.isRequired,
   onEnd: PropTypes.func.isRequired,
