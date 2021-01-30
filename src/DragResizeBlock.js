@@ -555,6 +555,7 @@ export class DragResizeBlock extends Component {
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
           onPress={this.onPress}
+          connectorStyle={this.props.connectorStyle}
         />
       );
     });

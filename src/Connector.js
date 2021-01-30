@@ -78,7 +78,15 @@ export class Connector extends Component {
   }
 
   render() {
-    const { x, y, size, width, height, connectorType } = this.props;
+    const {
+      x,
+      y,
+      size,
+      width,
+      height,
+      connectorType,
+      connectorStyle,
+    } = this.props;
     const LESS = 12;
     const CONNECTOR_CENTER_WIDTH = width - size - LESS;
     const CONNECTOR_CENTER_HEIGHT = height - size - LESS;
@@ -99,16 +107,19 @@ export class Connector extends Component {
       />
     ) : (
       <View
-        style={{
-          position: "absolute",
-          left: x,
-          top: y,
-          width: size,
-          height: size,
-          borderWidth: 1,
-          borderColor: "black",
-          backgroundColor: "white",
-        }}
+        style={[
+          {
+            position: "absolute",
+            left: x,
+            top: y,
+            width: size,
+            height: size,
+            borderWidth: 1,
+            borderColor: "black",
+            backgroundColor: "white",
+          },
+          connectorStyle,
+        ]}
         {...this._panResponder.panHandlers}
       />
     );
