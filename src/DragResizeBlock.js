@@ -1,10 +1,6 @@
-import React, {Component} from 'react';
-import {
-  Dimensions,
-  View,
-  TouchableWithoutFeedback,
-} from 'react-native';
-import PropTypes from 'prop-types';
+import React, { Component } from "react";
+import { Dimensions, View, TouchableWithoutFeedback } from "react-native";
+import PropTypes from "prop-types";
 
 import {
   Connector,
@@ -16,32 +12,24 @@ import {
   CONNECTOR_BOTTOM_MIDDLE,
   CONNECTOR_BOTTOM_LEFT,
   CONNECTOR_MIDDLE_LEFT,
-  CONNECTOR_CENTER
-} from './Connector';
+  CONNECTOR_CENTER,
+} from "./Connector";
 
-export const AXIS_X = 'x';
-export const AXIS_Y = 'y';
-export const AXIS_ALL = 'all';
+export const AXIS_X = "x";
+export const AXIS_Y = "y";
+export const AXIS_ALL = "all";
 
-const CONNECTOR_SIZE = 14;
+const CONNECTOR_SIZE = 20;
 const DEFAULT_Z_INDEX = 1;
 
 /**
  * Drag resize block.
  */
 export class DragResizeBlock extends Component {
-
   constructor(props) {
     super(props);
 
-    const {
-      x,
-      y,
-      w,
-      h,
-      minW,
-      minH,
-    } = props;
+    const { x, y, w, h, minW, minH } = props;
 
     this.state = {
       isSelected: false,
@@ -181,14 +169,15 @@ export class DragResizeBlock extends Component {
      */
     this.connectorsMap[CONNECTOR_CENTER] = {
       calculateX: (width) => {
-        return width / 2 - CONNECTOR_SIZE / 2;
+        return width / 2 - width / 2;
       },
       calculateY: (height) => {
-        return height / 2 - CONNECTOR_SIZE / 2;
+        return height / 2 - height / 2;
       },
       onStart: this.onDragStart,
       onMove: this.onDrag,
       onEnd: this.onDragEnd,
+      type: "center",
     };
   }
 
@@ -197,23 +186,18 @@ export class DragResizeBlock extends Component {
    * @param {Event} event - Press event.
    */
   onPress = (event) => {
-    const {
-      onPress,
-    } = this.props;
-
+    const { onPress } = this.props;
     if (onPress !== null) {
       onPress(event);
     }
-  }
+  };
 
   /**
    * Handle resize start event.
    * @param {Array} coord - Press coordinate [x,y].
    */
   onResizeStart = (coord) => {
-    const {
-      onResizeStart,
-    } = this.props;
+    const { onResizeStart } = this.props;
 
     this.setState(() => {
       return {
@@ -222,22 +206,12 @@ export class DragResizeBlock extends Component {
     });
 
     if (onResizeStart !== null) {
-      onResizeStart([
-        this.state.x,
-        this.state.y,
-      ]);
+      onResizeStart([this.state.x, this.state.y]);
     }
-  }
+  };
 
   onResizeTL = (coord) => {
-    const {
-      minW,
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -264,24 +238,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeTM = (coord) => {
-    const {
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -299,25 +264,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeTR = (coord) => {
-    const {
-      minW,
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -342,24 +297,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeMR = (coord) => {
-    const {
-      minW,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -375,25 +321,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeBR = (coord) => {
-    const {
-      minW,
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -416,24 +352,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeBM = (coord) => {
-    const {
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -449,25 +376,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeBL = (coord) => {
-    const {
-      minW,
-      minH,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, minH, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -492,24 +409,15 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   onResizeML = (coord) => {
-    const {
-      minW,
-      axis,
-      isResizable,
-      limitation,
-      onResize,
-    } = this.props;
+    const { minW, axis, isResizable, limitation, onResize } = this.props;
 
     if (!isResizable) {
       return;
@@ -527,24 +435,19 @@ export class DragResizeBlock extends Component {
       }
 
       if (onResize !== null) {
-        onResize([
-          this.state.x,
-          this.state.y,
-        ]);
+        onResize([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   /**
    * Handle resize end event.
    * @param {Array} coord - Press coordinate [x,y].
    */
   onResizeEnd = (coord) => {
-    const {
-      onResizeEnd,
-    } = this.props;
+    const { onResizeEnd } = this.props;
 
     this.setState(() => {
       return {
@@ -553,21 +456,16 @@ export class DragResizeBlock extends Component {
     });
 
     if (onResizeEnd !== null) {
-      onResizeEnd([
-        this.state.x,
-        this.state.y,
-      ]);
+      onResizeEnd([this.state.x, this.state.y]);
     }
-  }
+  };
 
   /**
    * Handle drag start event.
    * @param {Array} coord - Press coordinate [x,y].
    */
   onDragStart = (coord) => {
-    const {
-      onDragStart,
-    } = this.props;
+    const { onDragStart } = this.props;
 
     this.setState(() => {
       return {
@@ -576,24 +474,16 @@ export class DragResizeBlock extends Component {
     });
 
     if (onDragStart !== null) {
-      onDragStart([
-        this.state.x,
-        this.state.y,
-      ]);
+      onDragStart([this.state.x, this.state.y]);
     }
-  }
+  };
 
   /**
    * Handle drag event.
    * @param {Array} coord - Press coordinate [x,y].
    */
   onDrag = (coord) => {
-    const {
-      axis,
-      isDraggable,
-      limitation,
-      onDrag,
-    } = this.props;
+    const { axis, isDraggable, limitation, onDrag } = this.props;
 
     if (!isDraggable) {
       return;
@@ -616,24 +506,19 @@ export class DragResizeBlock extends Component {
       }
 
       if (onDrag !== null) {
-        onDrag([
-          this.state.x,
-          this.state.y,
-        ]);
+        onDrag([this.state.x, this.state.y]);
       }
 
       return this.state;
     });
-  }
+  };
 
   /**
    * Handle drag end event.
    * @param {Array} coord - Press coordinate [x,y].
    */
   onDragEnd = (coord) => {
-    const {
-      onDragEnd,
-    } = this.props;
+    const { onDragEnd } = this.props;
 
     this.setState(() => {
       return {
@@ -642,84 +527,68 @@ export class DragResizeBlock extends Component {
     });
 
     if (onDragEnd !== null) {
-      onDragEnd([
-        this.state.x,
-        this.state.y,
-      ]);
+      onDragEnd([this.state.x, this.state.y]);
     }
-  }
+  };
 
   /**
    * Render connector components.
    */
   renderConnectors = () => {
-    const {
-      connectors,
-    } = this.props;
+    const { connectors, connectorStyle, customConnector } = this.props;
 
-    const {
-      w,
-      h,
-    } = this.state;
+    const { w, h } = this.state;
 
     return connectors.map((connectorType) => {
       return (
         <Connector
           key={connectorType}
           type={connectorType}
+          width={w}
+          height={h}
+          connectorType={this.connectorsMap[connectorType]}
           size={CONNECTOR_SIZE}
           x={this.connectorsMap[connectorType].calculateX(w)}
           y={this.connectorsMap[connectorType].calculateY(h)}
           onStart={this.connectorsMap[connectorType].onStart}
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
+          onPress={this.onPress}
+          connectorStyle={connectorStyle}
+          customConnector={customConnector}
         />
       );
     });
-  }
+  };
 
   render() {
-    const {
-      children,
-      isDisabled,
-      zIndex,
-    } = this.props;
+    const { children, isDisabled, zIndex } = this.props;
 
-    const {
-      x,
-      y,
-      w,
-      h,
-      isSelected,
-    } = this.state;
+    const { x, y, w, h, isSelected } = this.state;
 
     return (
       <View
         style={{
-          position: 'absolute',
+          position: "absolute",
           left: x,
           top: y,
           width: w,
           height: h,
           padding: CONNECTOR_SIZE / 2,
           zIndex: isSelected ? zIndex + 1 : zIndex,
-        }}
-      >
-        <TouchableWithoutFeedback
-          onPress={this.onPress}
-        >
+          transform: [{ rotate: `${this.props.rotate}deg` }],
+        }}>
+        <TouchableWithoutFeedback onPress={this.onPress}>
           <View
             style={{
-              width: '100%',
-              height: '100%',
-            }}
-          >
+              width: "100%",
+              height: "100%",
+            }}>
             {children}
           </View>
         </TouchableWithoutFeedback>
 
         {isDisabled ? null : this.renderConnectors()}
-
       </View>
     );
   }
@@ -736,8 +605,8 @@ DragResizeBlock.defaultProps = {
   limitation: {
     x: 0,
     y: 0,
-    w: Dimensions.get('window').width,
-    h: Dimensions.get('window').height,
+    w: Dimensions.get("window").width,
+    h: Dimensions.get("window").height,
   },
   isDisabled: false,
   zIndex: DEFAULT_Z_INDEX,
@@ -772,11 +641,7 @@ DragResizeBlock.propTypes = {
   minW: PropTypes.number,
   minH: PropTypes.number,
   zIndex: PropTypes.number,
-  axis: PropTypes.oneOf([
-    AXIS_X,
-    AXIS_Y,
-    AXIS_ALL,
-  ]),
+  axis: PropTypes.oneOf([AXIS_X, AXIS_Y, AXIS_ALL]),
   limitation: PropTypes.shape({
     x: PropTypes.number.isRequired,
     y: PropTypes.number.isRequired,
