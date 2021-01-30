@@ -79,7 +79,7 @@ export class Connector extends Component {
 
   render() {
     const { x, y, size, width, height, connectorType } = this.props;
-    const LESS = 5;
+    const LESS = 12;
     const CONNECTOR_CENTER_WIDTH = width - size - LESS;
     const CONNECTOR_CENTER_HEIGHT = height - size - LESS;
     const CONNECTOR_CENTER_LEFT = x + size / 2 + LESS / 2;

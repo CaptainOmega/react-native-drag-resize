@@ -19,7 +19,7 @@ export const AXIS_X = "x";
 export const AXIS_Y = "y";
 export const AXIS_ALL = "all";
 
-const CONNECTOR_SIZE = 14;
+const CONNECTOR_SIZE = 20;
 const DEFAULT_Z_INDEX = 1;
 
 /**
@@ -554,6 +554,7 @@ export class DragResizeBlock extends Component {
           onStart={this.connectorsMap[connectorType].onStart}
           onMove={this.connectorsMap[connectorType].onMove}
           onEnd={this.connectorsMap[connectorType].onEnd}
+          onPress={this.onPress}
         />
       );
     });
